@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intern_task/pages/intro_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -6,88 +7,52 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
+    const deepPurpleAccent = Colors.deepPurpleAccent;
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Learning App',
       theme: ThemeData(
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.transparent,
           shadowColor: Colors.transparent,
         ),
-        textTheme: const TextTheme(headline5: TextStyle(color: Colors.purple)),
-        primaryColor: Colors.purple,
-        primarySwatch: Colors.purple,
-        iconTheme: const IconThemeData(color: Colors.purple),
-      ),
-      home: const MyHomePage(title: 'flutter'),
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    // double height = MediaQuery.of(context).size.height;
-    const double padding = 50;
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          color: Theme.of(context).iconTheme.color,
-          onPressed: () {},
-          icon: const Icon(Icons.arrow_back_ios_sharp),
+        textTheme: const TextTheme(
+          headline1:
+              TextStyle(color: deepPurpleAccent, fontWeight: FontWeight.bold),
+          headline2:
+              TextStyle(color: deepPurpleAccent, fontWeight: FontWeight.bold),
+          headline3:
+              TextStyle(color: deepPurpleAccent, fontWeight: FontWeight.bold),
+          headline4:
+              TextStyle(color: deepPurpleAccent, fontWeight: FontWeight.bold),
+          headline5:
+              TextStyle(color: deepPurpleAccent, fontWeight: FontWeight.bold),
+          headline6:
+              TextStyle(color: deepPurpleAccent, fontWeight: FontWeight.bold),
+          bodyText2: TextStyle(color: Color.fromARGB(255, 43, 43, 43)),
         ),
-      ),
-      body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: padding),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Image.asset(
-                'intro.png',
-                scale: 5,
-              ),
-              const SizedBox(height: 20,),
-              Text(
-                'Online Learning Platform',
-                style: Theme.of(context).textTheme.headline5,
-              ),              const SizedBox(height: 20,),
-
-              SizedBox(
-                width: width / 2,
-                child: const Text(
-                  '''Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries.''',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(),
-                ),
-              ),              const SizedBox(height: 20,),
-
-              SizedBox(
-                width: double.maxFinite,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                      shape: const StadiumBorder(),
-                      padding: const EdgeInsets.all(20)),
-                  child: const Text(
-                    'Start Learning',
-                    style: TextStyle(
-                      fontSize: 18,
-                    ),
-                  ),
-                ),
-              )
-            ],
-          ),
+        primaryColor: deepPurpleAccent,
+        primarySwatch: Colors.deepPurple,
+        elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+          backgroundColor: deepPurpleAccent,
+          textStyle: const TextStyle(fontSize: 18),
+          shape: const StadiumBorder(),
+          minimumSize: const Size(300, 0),
+          padding: const EdgeInsets.all(20),
+        )),
+        buttonTheme: const ButtonThemeData(
+          buttonColor: deepPurpleAccent,
+          shape: StadiumBorder(),
+          minWidth: 500,
         ),
+        iconTheme: const IconThemeData(
+          color: deepPurpleAccent,
+        ),
+        fontFamily: 'Switzer',
       ),
+      home: const IntroScreen(),
     );
   }
 }
