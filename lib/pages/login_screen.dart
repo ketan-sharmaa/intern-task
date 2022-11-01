@@ -85,23 +85,20 @@ class _LoginScreenState extends State<LoginScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Row(
-                        children: <Widget>[
-                          Checkbox(
-                              value: ischecked,
-                              onChanged: (value) {
-                                setState(() {
-                                  ischecked = value!;
-                                });
-                              }),
-                          Text(
-                            'Remember me?',
-                            style: Theme.of(context).textTheme.bodyText1,
-                          )
-                        ],
-                      ),
+                    Row(
+                      children: <Widget>[
+                        Checkbox(
+                            value: ischecked,
+                            onChanged: (value) {
+                              setState(() {
+                                ischecked = value!;
+                              });
+                            }),
+                        Text(
+                          'Remember me?',
+                          style: Theme.of(context).textTheme.bodyText1,
+                        )
+                      ],
                     ),
                     TextButton(
                         onPressed: () {},
