@@ -62,30 +62,24 @@ class _CourseSelectionScreenState extends State<CourseSelectionScreen> {
                   borderColor: Theme.of(context).primaryColor,
                   children: const <Widget>[
                     // first toggle button
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          'Beginner',
-                        ),
+                    Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        'Beginner',
                       ),
                     ),
                     // second toggle button
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          'Intermediate',
-                        ),
+                    Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        'Intermediate',
                       ),
                     ),
                     // third toggle button
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          'Expert',
-                        ),
+                    Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        'Expert',
                       ),
                     ),
                   ],
