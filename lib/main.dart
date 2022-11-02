@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:intern_task/pages/bottomnav.dart';
 import 'package:intern_task/pages/course_selection_screen.dart';
+import 'package:intern_task/pages/home_screen.dart';
+import 'package:intern_task/pages/intro_screen.dart';
+import 'package:intern_task/pages/launch_screen.dart';
+import 'package:intern_task/pages/login_screen.dart';
+import 'package:intern_task/pages/myaccount_screen.dart';
+import 'package:intern_task/pages/myclasses_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,7 +29,11 @@ class MyApp extends StatelessWidget {
             shadowColor: Colors.transparent,
             iconTheme: IconThemeData(),
             centerTitle: true,
-            titleTextStyle: boldDeepPurpleAccent),
+            titleTextStyle: TextStyle(
+              color: deepPurpleAccent,
+              fontWeight: FontWeight.bold,
+              fontSize: 17,
+            )),
         textTheme: const TextTheme(
           headline1: boldDeepPurpleAccent,
           headline2: boldDeepPurpleAccent,
@@ -49,10 +60,28 @@ class MyApp extends StatelessWidget {
           minWidth: 500,
         ),
         iconTheme: const IconThemeData(color: deepPurpleAccent),
-        fontFamily: 'Switzer',
-        bottomNavigationBarTheme: const BottomNavigationBarThemeData(),
+        cardTheme: CardTheme(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          elevation: 5,
+          shadowColor: deepPurpleAccent,
+          margin: const EdgeInsets.all(3),
+        ),
       ),
-      home: const CourseSelectionScreen(),
+      initialRoute: '/',
+  routes: {
+    '/': (context) => const LaunchScreen(),
+    '/intro': (context) => const IntroScreen(),
+    '/home': (context) => const HomeScreen(),
+    '/myclass': (context) => const MyClassesScreen(),
+        '/courseselection': (context) => const CourseSelectionScreen(),
+    '/myaccount': (context) => const MyAccountScreen(),
+        '/login': (context) => const LoginScreen(),
+    '/bottomnav': (context) => const BottomNav(),
+
+
+
+  },
     );
   }
 }

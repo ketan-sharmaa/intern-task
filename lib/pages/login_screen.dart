@@ -25,7 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 Text(
                   'Learning App',
-                  style: Theme.of(context).textTheme.headline4,
+                  style: Theme.of(context).textTheme.headline5,
                 ),
                 const SizedBox(height: 40),
                 Text(
@@ -111,7 +111,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 30),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {Navigator.pushNamed(context, '/courseselection');},
                   child: const Text('Log In with your account'),
                 ),
                 const Expanded(
