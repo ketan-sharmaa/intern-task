@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intern_task/util/widget/label_checkbox.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -8,7 +9,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  bool ischecked = false;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -85,21 +85,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Row(
-                      children: <Widget>[
-                        Checkbox(
-                            value: ischecked,
-                            onChanged: (value) {
-                              setState(() {
-                                ischecked = value!;
-                              });
-                            }),
-                        Text(
-                          'Remember me?',
-                          style: Theme.of(context).textTheme.bodyText1,
-                        )
-                      ],
-                    ),
+                    const LabelCheckBox(checkboxLabel: 'Remember me?'),
                     TextButton(
                         onPressed: () {},
                         child: const Text(
@@ -111,7 +97,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 30),
                 ElevatedButton(
-                  onPressed: () {Navigator.pushNamed(context, '/courseselection');},
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/courseselection');
+                  },
                   child: const Text('Log In with your account'),
                 ),
                 const Expanded(

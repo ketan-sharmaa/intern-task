@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intern_task/pages/course_card.dart';
+import 'package:intern_task/util/widget/card/course_tile_list.dart';
 
 class MyClassesScreen extends StatefulWidget {
   const MyClassesScreen({super.key});
@@ -22,9 +22,7 @@ class _MyClassesScreenState extends State<MyClassesScreen> {
                 icon: const Icon(Icons.arrow_back_ios_sharp))),
         body: Container(
           padding: const EdgeInsets.all(30),
-          child: Column(
-            children: const [CourseTiles()],
-          ),
+          child: const CourseTiles(),
         ),
       ),
     );

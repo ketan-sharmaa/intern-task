@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:intern_task/pages/bottomnav.dart';
-import 'package:intern_task/pages/course_selection_screen.dart';
-import 'package:intern_task/pages/home_screen.dart';
-import 'package:intern_task/pages/intro_screen.dart';
-import 'package:intern_task/pages/launch_screen.dart';
-import 'package:intern_task/pages/login_screen.dart';
-import 'package:intern_task/pages/myaccount_screen.dart';
-import 'package:intern_task/pages/myclasses_screen.dart';
+import 'package:intern_task/screens/launch_screen.dart';
+import 'package:intern_task/screens/main_screen.dart';
+import 'package:intern_task/screens/bookclass_screen.dart';
+import 'package:intern_task/screens/course_selection_screen.dart';
+import 'package:intern_task/screens/home_screen.dart';
+import 'package:intern_task/screens/intro_screen.dart';
+import 'package:intern_task/screens/login_screen.dart';
+import 'package:intern_task/screens/myaccount_screen.dart';
+import 'package:intern_task/screens/myclasses_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -61,27 +62,24 @@ class MyApp extends StatelessWidget {
         ),
         iconTheme: const IconThemeData(color: deepPurpleAccent),
         cardTheme: CardTheme(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-          elevation: 5,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+          elevation: 2,
           shadowColor: deepPurpleAccent,
           margin: const EdgeInsets.all(3),
         ),
       ),
       initialRoute: '/',
-  routes: {
-    '/': (context) => const LaunchScreen(),
-    '/intro': (context) => const IntroScreen(),
-    '/home': (context) => const HomeScreen(),
-    '/myclass': (context) => const MyClassesScreen(),
+      routes: {
+        '/': (context) => const LaunchScreen(),
+        '/intro': (context) => const IntroScreen(),
+        '/home': (context) => const HomeScreen(),
+        '/myclass': (context) => const MyClassesScreen(),
         '/courseselection': (context) => const CourseSelectionScreen(),
-    '/myaccount': (context) => const MyAccountScreen(),
+        '/myaccount': (context) => const MyAccountScreen(),
         '/login': (context) => const LoginScreen(),
-    '/bottomnav': (context) => const BottomNav(),
-
-
-
-  },
+        '/bottomnav': (context) => const BottomNavPageView(),
+        '/bookclass': (context) => const BookClassScreen(),
+      },
     );
   }
 }
