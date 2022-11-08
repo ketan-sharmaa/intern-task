@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:intern_task/firebase_options.dart';
+import 'package:intern_task/util/authentication_service.dart';
 import 'package:intern_task/screens/launch_screen.dart';
 import 'package:intern_task/screens/main_screen.dart';
 import 'package:intern_task/screens/bookclass_screen.dart';
@@ -9,7 +13,12 @@ import 'package:intern_task/screens/login_screen.dart';
 import 'package:intern_task/screens/myaccount_screen.dart';
 import 'package:intern_task/screens/myclasses_screen.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -23,6 +32,7 @@ class MyApp extends StatelessWidget {
       fontWeight: FontWeight.bold,
     );
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Learning App',
       theme: ThemeData(
         appBarTheme: const AppBarTheme(
@@ -42,8 +52,8 @@ class MyApp extends StatelessWidget {
           headline4: boldDeepPurpleAccent,
           headline5: boldDeepPurpleAccent,
           headline6: boldDeepPurpleAccent,
-          bodyText2: TextStyle(color: Color.fromARGB(255, 43, 43, 43)),
           bodyText1: boldDeepPurpleAccent,
+          bodyText2: TextStyle(color: Color.fromARGB(255, 43, 43, 43)),
         ),
         primaryColor: deepPurpleAccent,
         primarySwatch: Colors.deepPurple,
@@ -68,18 +78,19 @@ class MyApp extends StatelessWidget {
           margin: const EdgeInsets.all(3),
         ),
       ),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const LaunchScreen(),
-        '/intro': (context) => const IntroScreen(),
-        '/home': (context) => const HomeScreen(),
-        '/myclass': (context) => const MyClassesScreen(),
-        '/courseselection': (context) => const CourseSelectionScreen(),
-        '/myaccount': (context) => const MyAccountScreen(),
-        '/login': (context) => const LoginScreen(),
-        '/bottomnav': (context) => const BottomNavPageView(),
-        '/bookclass': (context) => const BookClassScreen(),
-      },
+      home: const Authenticate(),
+      // initialRoute: '/',
+      // routes: {
+      //   '/': (context) => const LaunchScreen(),
+      //   '/intro': (context) => const IntroScreen(),
+      //   '/home': (context) => const HomeScreen(),
+      //   '/myclass': (context) => const MyClassesScreen(),
+      //   '/courseselection': (context) => const CourseSelectionScreen(),
+      //   '/myaccount': (context) => const MyAccountScreen(),
+      //   '/login': (context) => const LoginScreen(),
+      //   '/bottomnav': (context) => const BottomNavPageView(),
+      //   '/bookclass': (context) => const BookClassScreen(),
+      // },
     );
   }
 }

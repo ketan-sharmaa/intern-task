@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:intern_task/screens/fogotpassword_screen.dart';
 import 'package:intern_task/util/authentication_service.dart';
 import 'package:intern_task/util/widget/label_checkbox.dart';
 
-class LoginScreen extends StatefulWidget {
-  final VoidCallback showCreateAccountPage;
-  const LoginScreen({super.key, required this.showCreateAccountPage});
+class CreateAccountScreen extends StatefulWidget {
+  final VoidCallback showLoginScreen;
+  const CreateAccountScreen({super.key, required this.showLoginScreen});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<CreateAccountScreen> createState() => _CreateAccountScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _CreateAccountScreenState extends State<CreateAccountScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  bool _showpassword = true;
+  final _confirmPasswordController = TextEditingController();
+  bool _hidePassword = true;
+  bool _hideConfirmPassword = true;
 
   @override
   void dispose() {
@@ -28,54 +29,21 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(title: const Text('LOG IN')),
+        appBar: AppBar(title: const Text('Sign Up')),
         body: Center(
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 30),
             child: Column(
               children: [
-                const SizedBox(height: 40),
                 Text(
-                  'Learning App',
+                  'Create new account',
                   style: Theme.of(context).textTheme.headline5,
                 ),
                 const SizedBox(height: 40),
                 Text(
-                  'Enter your log in details to access your account',
+                  'Enter your details',
                   style: Theme.of(context).textTheme.headline6,
                   textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 30),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Expanded(
-                      flex: 1,
-                      child: ElevatedButton.icon(
-                          onPressed: () {},
-                          icon: const Icon(Icons.face_unlock_outlined),
-                          label: const FittedBox(child: Text('Facebook')),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor:
-                                const Color.fromARGB(255, 48, 5, 239),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10)),
-                          )),
-                    ),
-                    const SizedBox(width: 20),
-                    Expanded(
-                      flex: 1,
-                      child: ElevatedButton.icon(
-                          onPressed: () {},
-                          icon: const Icon(Icons.face_unlock_outlined),
-                          label: const FittedBox(child: Text('Google')),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.red[900],
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10)),
-                          )),
-                    ),
-                  ],
                 ),
                 const SizedBox(height: 30),
                 Form(
@@ -98,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     const SizedBox(height: 20),
                     TextFormField(
-                      obscureText: _showpassword,
+                      obscureText: _hidePassword,
                       controller: _passwordController,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       validator: (value) {
@@ -110,10 +78,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       decoration: InputDecoration(
                         suffixIcon: IconButton(
                             onPressed: () => setState(() {
-                                  _showpassword = !_showpassword;
+                                  _hidePassword = !_hidePassword;
                                 }),
                             icon: Icon(
-                              _showpassword
+                              _hidePassword
                                   ? Icons.remove_red_eye_outlined
                                   : Icons.visibility,
                             )),
@@ -122,53 +90,61 @@ class _LoginScreenState extends State<LoginScreen> {
                         labelText: 'Password',
                       ),
                     ),
-                    const SizedBox(height: 10),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const LabelCheckBox(checkboxLabel: 'Remember me'),
-                        TextButton(
-                            onPressed: () {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) {
-                                return const ForgotPasswordScreen();
-                              }));
-                            },
-                            child: Text(
-                              'Forgot password?',
-                              style: TextStyle(
-                                  color: Colors.red.shade400,
-                                  fontWeight: FontWeight.bold),
-                            ))
-                      ],
+                    const SizedBox(height: 20),
+                    TextFormField(
+                      obscureText: _hideConfirmPassword,
+                      controller: _confirmPasswordController,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Please confirm Password';
+                        }
+                        return null;
+                      },
+                      decoration: InputDecoration(
+                        suffixIcon: IconButton(
+                            onPressed: () => setState(() {
+                                  _hideConfirmPassword = !_hideConfirmPassword;
+                                }),
+                            icon: Icon(
+                              _hideConfirmPassword
+                                  ? Icons.remove_red_eye_outlined
+                                  : Icons.visibility,
+                            )),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                        labelText: 'Confirm Password',
+                      ),
                     ),
+                    const SizedBox(height: 10),
+                    const LabelCheckBox(checkboxLabel: 'Remember me'),
                     const SizedBox(height: 30),
                     ElevatedButton(
                       onPressed: () async {
-                        if (_formKey.currentState!.validate()) {
-                          Authentication().logIn(
+                        if (_formKey.currentState!.validate() &&
+                            _passwordController.text ==
+                                _confirmPasswordController.text) {
+                          Authentication().signUp(
                               email: _emailController.text.trim(),
                               password: _passwordController.text);
                         }
                       },
-                      child: const Text('Log in'),
+                      child: const Text('Sign Up'),
                     ),
                   ]),
                 ),
-                const Expanded(
-                  child: SizedBox(),
-                ),
+                const Expanded(child: SizedBox()),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Don't have an Account?",
+                      "Already have an Account?",
                       style: Theme.of(context).textTheme.bodyText1,
                     ),
                     TextButton(
-                        onPressed: widget.showCreateAccountPage,
+                        onPressed: widget.showLoginScreen,
                         child: Text(
-                          'Create Account',
+                          'Log in',
                           style: Theme.of(context)
                               .textTheme
                               .bodyText1!
@@ -176,9 +152,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ))
                   ],
                 ),
-                const Expanded(
-                  child: SizedBox(),
-                ),
+                const Expanded(child: SizedBox()),
               ],
             ),
           ),

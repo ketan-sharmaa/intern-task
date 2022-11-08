@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:intern_task/util/authentication_service.dart';
 import 'package:intern_task/util/widget/menu_button.dart';
 
 class MyAccountScreen extends StatefulWidget {
@@ -9,6 +11,7 @@ class MyAccountScreen extends StatefulWidget {
 }
 
 class _MyAccountScreenState extends State<MyAccountScreen> {
+  final user = FirebaseAuth.instance.currentUser!;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -42,8 +45,8 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
                     const SizedBox(width: 15),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Text(
+                      children: [
+                        const Text(
                           'John Doe',
                           style: TextStyle(
                               fontSize: 25,
@@ -51,9 +54,9 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
                               color: Colors.white),
                         ),
                         Text(
-                          'John@email.com',
-                          style: TextStyle(
-                              fontSize: 12,
+                          user.email ?? 'Not Logged In',
+                          style: const TextStyle(
+                              fontSize: 15,
                               fontWeight: FontWeight.bold,
                               color: Colors.white),
                         )
@@ -88,7 +91,7 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
             ),
             ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/login');
+                  Authentication().logOut();
                 },
                 child: const Text('Log Out')),
             const Expanded(child: SizedBox()),
