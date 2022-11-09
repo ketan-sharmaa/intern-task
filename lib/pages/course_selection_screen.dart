@@ -33,7 +33,7 @@ class _CourseSelectionScreenState extends State<CourseSelectionScreen> {
               children: [
                 Text(
                   'Learning App',
-                  style: Theme.of(context).textTheme.headline4,
+                  style: Theme.of(context).textTheme.headline5,
                 ),
                 const SizedBox(height: 20),
                 Image.asset(
@@ -101,7 +101,7 @@ class _CourseSelectionScreenState extends State<CourseSelectionScreen> {
                   ],
                 ),
                 const SizedBox(height: 15),
-                ElevatedButton(onPressed: () {}, child: const Text('Continue'))
+                ElevatedButton(onPressed: () {Navigator.pushNamed(context, '/bottomnav');}, child: const Text('Continue'))
               ],
             ),
           ),

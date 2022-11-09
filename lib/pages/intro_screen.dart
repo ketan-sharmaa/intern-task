@@ -40,7 +40,7 @@ class IntroScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {Navigator.pushNamed(context, '/login');},
                   child: const Text('Start Learning'),
                 ),
               ],
