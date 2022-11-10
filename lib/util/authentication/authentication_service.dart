@@ -1,9 +1,9 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:intern_task/screens/login_screen.dart';
 import 'package:intern_task/screens/main_screen.dart';
-import 'package:intern_task/util/auth_page.dart';
+import 'package:intern_task/util/authentication/auth_page.dart';
 
 class Authenticate extends StatelessWidget {
   const Authenticate({super.key});
@@ -27,22 +27,30 @@ class Authenticate extends StatelessWidget {
 
 class Authentication {
   Future logIn({required String email, required String password}) async {
-    await FirebaseAuth.instance
-        .signInWithEmailAndPassword(email: email, password: password);
+    try {
+      await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
+    } on FirebaseAuthException catch (e, s) {
+      log(e.message!, stackTrace: s, name: 'vbnm', error: '');
+    }
   }
 
   Future signUp({required String email, required String password}) async {
     try {
       await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
-      
-    } on FirebaseAuthException catch (e) {
-      print(e);
+    } on FirebaseAuthException catch (e, s) {
+      log(e.message!, stackTrace: s, name: 'vbnm', error: '');
     }
   }
 
   Future passwordReset({required String email}) async {
-    await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch (e, s) {
+      if (e.code=='invalid-email'){
+      log(e.message!, stackTrace: s, name: 'vbnm');}
+    }
   }
 
   void logOut() async {

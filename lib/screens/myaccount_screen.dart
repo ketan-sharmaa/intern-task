@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:intern_task/util/authentication_service.dart';
+import 'package:intern_task/util/authentication/authentication_service.dart';
 import 'package:intern_task/util/widget/menu_button.dart';
 
 class MyAccountScreen extends StatefulWidget {
@@ -17,12 +17,9 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-            title: const Text('My Account'),
-            leading: IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: const Icon(Icons.arrow_back_ios_sharp))),
+          title: const Text('My Account'),
+          automaticallyImplyLeading: false,
+        ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -56,7 +53,7 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
                         Text(
                           user.email ?? 'Not Logged In',
                           style: const TextStyle(
-                              fontSize: 15,
+                              fontSize: 12,
                               fontWeight: FontWeight.bold,
                               color: Colors.white),
                         )

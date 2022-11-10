@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intern_task/screens/fogotpassword_screen.dart';
-import 'package:intern_task/util/authentication_service.dart';
+import 'package:intern_task/util/authentication/authentication_service.dart';
 import 'package:intern_task/util/widget/label_checkbox.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -28,7 +28,10 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(title: const Text('LOG IN')),
+        appBar: AppBar(
+          title: const Text('LOG IN'),
+          automaticallyImplyLeading: false,
+        ),
         body: Center(
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 30),

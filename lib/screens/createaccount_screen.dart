@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intern_task/util/authentication_service.dart';
+import 'package:intern_task/util/authentication/authentication_service.dart';
 import 'package:intern_task/util/widget/label_checkbox.dart';
 
 class CreateAccountScreen extends StatefulWidget {
@@ -29,53 +29,52 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(title: const Text('Sign Up')),
-        body: Center(
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 30),
-            child: Column(
-              children: [
-                Text(
-                  'Create new account',
-                  style: Theme.of(context).textTheme.headline5,
-                ),
-                const SizedBox(height: 40),
-                Text(
-                  'Enter your details',
-                  style: Theme.of(context).textTheme.headline6,
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 30),
-                Form(
-                  key: _formKey,
-                  child: Column(children: [
-                    TextFormField(
-                      controller: _emailController,
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Please enter Email';
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        labelText: 'Email',
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                    TextFormField(
-                      obscureText: _hidePassword,
-                      controller: _passwordController,
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Please enter Password';
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          title: const Text('SIGN UP'),
+        ),
+        body: Column(
+          children: [
+            const SizedBox(height: 40),
+            Text(
+              'Create new account',
+              style: Theme.of(context).textTheme.headline5,
+            ),
+            const SizedBox(height: 40),
+            Text(
+              'Enter your details',
+              style: Theme.of(context).textTheme.headline6,
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 30),
+            Form(
+              key: _formKey,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30),
+                child: Column(children: [
+                  TextFormField(
+                    controller: _emailController,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please enter Email';
+                      }
+                      return null;
+                    },
+                    decoration: const InputDecoration(labelText: 'Email'),
+                  ),
+                  const SizedBox(height: 20),
+                  TextFormField(
+                    obscureText: _hidePassword,
+                    controller: _passwordController,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please enter Password';
+                      }
+                      return null;
+                    },
+                    decoration: InputDecoration(
                         suffixIcon: IconButton(
                             onPressed: () => setState(() {
                                   _hidePassword = !_hidePassword;
@@ -85,23 +84,20 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                                   ? Icons.remove_red_eye_outlined
                                   : Icons.visibility,
                             )),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        labelText: 'Password',
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                    TextFormField(
-                      obscureText: _hideConfirmPassword,
-                      controller: _confirmPasswordController,
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Please confirm Password';
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(
+                        labelText: 'Password'),
+                  ),
+                  const SizedBox(height: 20),
+                  TextFormField(
+                    obscureText: _hideConfirmPassword,
+                    controller: _confirmPasswordController,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please confirm Password';
+                      }
+                      return null;
+                    },
+                    decoration: InputDecoration(
                         suffixIcon: IconButton(
                             onPressed: () => setState(() {
                                   _hideConfirmPassword = !_hideConfirmPassword;
@@ -111,51 +107,47 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                                   ? Icons.remove_red_eye_outlined
                                   : Icons.visibility,
                             )),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        labelText: 'Confirm Password',
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    const LabelCheckBox(checkboxLabel: 'Remember me'),
-                    const SizedBox(height: 30),
-                    ElevatedButton(
-                      onPressed: () async {
-                        if (_formKey.currentState!.validate() &&
-                            _passwordController.text ==
-                                _confirmPasswordController.text) {
-                          Authentication().signUp(
-                              email: _emailController.text.trim(),
-                              password: _passwordController.text);
-                        }
-                      },
-                      child: const Text('Sign Up'),
-                    ),
-                  ]),
+                        labelText: 'Confirm Password'),
+                  ),
+                  const SizedBox(height: 10),
+                  const LabelCheckBox(checkboxLabel: 'Remember me'),
+                  const SizedBox(height: 30),
+                  ElevatedButton(
+                    onPressed: () async {
+                      if (_formKey.currentState!.validate() &&
+                          _passwordController.text ==
+                              _confirmPasswordController.text) {
+                        Authentication().signUp(
+                            email: _emailController.text.trim(),
+                            password: _passwordController.text);
+                      }
+                    },
+                    child: const Text('Sign Up'),
+                  ),
+                ]),
+              ),
+            ),
+            const Expanded(child: SizedBox()),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Already have an Account?",
+                  style: Theme.of(context).textTheme.bodyText1,
                 ),
-                const Expanded(child: SizedBox()),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Already have an Account?",
-                      style: Theme.of(context).textTheme.bodyText1,
-                    ),
-                    TextButton(
-                        onPressed: widget.showLoginScreen,
-                        child: Text(
-                          'Log in',
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyText1!
-                              .copyWith(color: Colors.blue),
-                        ))
-                  ],
-                ),
-                const Expanded(child: SizedBox()),
+                TextButton(
+                    onPressed: widget.showLoginScreen,
+                    child: Text(
+                      'Log in',
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyText1!
+                          .copyWith(color: Colors.blue),
+                    ))
               ],
             ),
-          ),
+            const Expanded(child: SizedBox()),
+          ],
         ),
       ),
     );

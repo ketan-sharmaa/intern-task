@@ -12,20 +12,27 @@ class _LabelCheckBoxState extends State<LabelCheckBox> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: <Widget>[
-        Checkbox(
-            value: ischecked,
-            onChanged: (value) {
-              setState(() {
-                ischecked = value!;
-              });
-            }),
-        Text(
-          widget.checkboxLabel,
-          style: Theme.of(context).textTheme.bodyText1,
-        ),
-      ],
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          ischecked = !ischecked;
+        });
+      },
+      child: Row(
+        children: <Widget>[
+          Checkbox(
+              value: ischecked,
+              onChanged: (value) {
+                setState(() {
+                  ischecked = !ischecked;
+                });
+              }),
+          Text(
+            widget.checkboxLabel,
+            style: Theme.of(context).textTheme.bodyText1,
+          ),
+        ],
+      ),
     );
   }
 }

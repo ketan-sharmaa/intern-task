@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:intern_task/util/widget/card/card_items.dart';
+import 'package:intern_task/util/classes.dart';
 
 class CourseTiles extends StatelessWidget {
-  const CourseTiles({super.key});
+  CourseTiles({super.key});
+  final _courseIds = MyCourses();
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: items.length,
-      itemBuilder: ((context, index) => CardTile(item: items[index])),
+      itemCount: CourseClass.items.length,
+      itemBuilder: ((context, index) =>
+          CardTile(item: CourseClass.items[index])),
     );
   }
 }
 
 // ignore: non_constant_identifier_names
-Widget CardTile({required CardItem item}) => SizedBox(
+Widget CardTile({required CardItem item}) => Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       height: 120,
       child: Card(
         child: Row(
@@ -30,8 +34,8 @@ Widget CardTile({required CardItem item}) => SizedBox(
                 )),
             Expanded(
               flex: 2,
-              child: Container(
-                padding: const EdgeInsets.fromLTRB(10, 18, 10, 15),
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(10, 12, 10, 12),
                 child: Column(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -55,14 +59,7 @@ Widget CardTile({required CardItem item}) => SizedBox(
                         ),
                       ),
                       const Expanded(flex: 2, child: SizedBox()),
-                      const Text(
-                        'progressbar',
-                        style: TextStyle(
-                          color: Colors.deepPurpleAccent,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 10,
-                        ),
-                      ),
+                      AddButton(course: item)
                     ]),
               ),
             )
@@ -70,3 +67,44 @@ Widget CardTile({required CardItem item}) => SizedBox(
         ),
       ),
     );
+
+class AddButton extends StatefulWidget {
+  final CardItem course;
+  const AddButton({
+    Key? key,
+    required this.course,
+  }) : super(key: key);
+
+  @override
+  State<AddButton> createState() => _AddButtonState();
+}
+
+class _AddButtonState extends State<AddButton> {
+  final _courseIds = MyCourses();
+
+  @override
+  Widget build(BuildContext context) {
+    bool isAdded = _courseIds.courses.contains(widget.course) ? true : false;
+
+    return TextButton(
+        onPressed: () {
+          isAdded = !isAdded;
+          final _course = CourseClass();
+          _courseIds.course = _course;
+          _courseIds.addCourse(widget.course);
+          setState(() {});
+        },
+        style: ButtonStyle(
+            backgroundColor:
+                MaterialStateProperty.all<Color>(Colors.deepPurpleAccent)),
+        child: isAdded
+            ? const Text(
+                'Added',
+                style: TextStyle(color: Colors.white70),
+              )
+            : const Text(
+                'ADD',
+                style: TextStyle(color: Colors.white),
+              ));
+  }
+}

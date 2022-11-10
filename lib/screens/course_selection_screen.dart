@@ -11,7 +11,9 @@ class CourseSelectionScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
             leading: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pop(context);
+                },
                 icon: const Icon(Icons.arrow_back_ios_sharp))),
         body: Container(
           padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -36,11 +38,7 @@ class CourseSelectionScreen extends StatelessWidget {
               const SizedBox(height: 60),
               const LabelCheckBox(checkboxLabel: 'Are you sure?'),
               const SizedBox(height: 15),
-              ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/bottomnav');
-                  },
-                  child: const Text('Continue'))
+              ElevatedButton(onPressed: () {}, child: const Text('Continue'))
             ],
           ),
         ),

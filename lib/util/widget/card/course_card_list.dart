@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:intern_task/util/widget/card/card_items.dart';
 
-class CourseCard extends StatelessWidget {
+class CourseCard extends StatefulWidget {
   const CourseCard({super.key});
 
+  @override
+  State<CourseCard> createState() => _CourseCardState();
+}
+
+class _CourseCardState extends State<CourseCard> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -14,8 +19,9 @@ class CourseCard extends StatelessWidget {
           child: ListView.builder(
             clipBehavior: Clip.none,
             scrollDirection: Axis.horizontal,
-            itemCount: items.length,
-            itemBuilder: ((context, index) => NewCard(item: items[index])),
+            itemCount: CourseClass.items.length,
+            itemBuilder: ((context, index) =>
+                NewCard(item: CourseClass.items[index])),
           ),
         ),
       ],
@@ -62,7 +68,8 @@ Widget NewCard({required CardItem item}) => Card(
                         ),
                       ),
                       const SizedBox(height: 10),
-                      Text(item.duration,
+                      Text(
+                          '${item.duration.inHours.toString()}H ${item.duration.inMinutes.remainder(60).toString()}Min',
                           style: const TextStyle(
                             color: Colors.deepPurpleAccent,
                             fontWeight: FontWeight.bold,

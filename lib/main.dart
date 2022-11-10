@@ -1,24 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:intern_task/firebase_options.dart';
-import 'package:intern_task/util/authentication_service.dart';
+import 'package:intern_task/util/authentication/auth_page.dart';
+import 'package:intern_task/util/firebase_options.dart';
+import 'package:intern_task/util/authentication/authentication_service.dart';
 import 'package:intern_task/screens/launch_screen.dart';
-import 'package:intern_task/screens/main_screen.dart';
 import 'package:intern_task/screens/bookclass_screen.dart';
 import 'package:intern_task/screens/course_selection_screen.dart';
-import 'package:intern_task/screens/home_screen.dart';
-import 'package:intern_task/screens/intro_screen.dart';
-import 'package:intern_task/screens/login_screen.dart';
-import 'package:intern_task/screens/myaccount_screen.dart';
-import 'package:intern_task/screens/myclasses_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
   runApp(const MyApp());
 }
 
@@ -34,7 +28,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Learning App',
-      theme: ThemeData(
+      theme: ThemeData(inputDecorationTheme: InputDecorationTheme(border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10))),
         appBarTheme: const AppBarTheme(
             backgroundColor: Colors.transparent,
             shadowColor: Colors.transparent,
@@ -78,19 +73,14 @@ class MyApp extends StatelessWidget {
           margin: const EdgeInsets.all(3),
         ),
       ),
-      home: const Authenticate(),
-      // initialRoute: '/',
-      // routes: {
-      //   '/': (context) => const LaunchScreen(),
-      //   '/intro': (context) => const IntroScreen(),
-      //   '/home': (context) => const HomeScreen(),
-      //   '/myclass': (context) => const MyClassesScreen(),
-      //   '/courseselection': (context) => const CourseSelectionScreen(),
-      //   '/myaccount': (context) => const MyAccountScreen(),
-      //   '/login': (context) => const LoginScreen(),
-      //   '/bottomnav': (context) => const BottomNavPageView(),
-      //   '/bookclass': (context) => const BookClassScreen(),
-      // },
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const LaunchScreen(),
+        '/authenticate': (context) => const Authenticate(),
+        '/authpage': (context) => const AuthPage(),
+        '/courseselection': (context) => const CourseSelectionScreen(),
+        '/bookclass': (context) => const BookClassScreen(),
+      },
     );
   }
 }

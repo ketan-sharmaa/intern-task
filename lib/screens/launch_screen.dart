@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:intern_task/screens/intro_screen.dart';
 
@@ -11,6 +10,7 @@ class LaunchScreen extends StatefulWidget {
 }
 
 class _LaunchScreenState extends State<LaunchScreen> {
+ 
   @override
   void initState() {
     super.initState();
