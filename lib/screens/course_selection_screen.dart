@@ -15,8 +15,7 @@ class CourseSelectionScreen extends StatelessWidget {
                   Navigator.pop(context);
                 },
                 icon: const Icon(Icons.arrow_back_ios_sharp))),
-        body: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
+        body: Center(
           child: Column(
             children: [
               Text(
@@ -24,9 +23,12 @@ class CourseSelectionScreen extends StatelessWidget {
                 style: Theme.of(context).textTheme.headline5,
               ),
               const SizedBox(height: 20),
-              Image.asset(
-                'intro.png',
-                scale: 5,
+              Padding(
+                padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
+                child: Image.asset(
+                  'intro.png',
+                  scale: 5,
+                ),
               ),
               const SizedBox(height: 30),
               Text(
@@ -35,7 +37,7 @@ class CourseSelectionScreen extends StatelessWidget {
               ),
               const SizedBox(height: 30),
               const CourseChoiceChip(),
-              const SizedBox(height: 60),
+              const SizedBox(height: 20),
               const LabelCheckBox(checkboxLabel: 'Are you sure?'),
               const SizedBox(height: 15),
               ElevatedButton(onPressed: () {}, child: const Text('Continue'))

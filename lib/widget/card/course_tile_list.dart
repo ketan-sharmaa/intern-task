@@ -8,6 +8,7 @@ class CourseTiles extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      physics: const BouncingScrollPhysics(),
       itemCount: CourseClass.items.length,
       itemBuilder: ((context, index) => Container(
             padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -84,12 +85,13 @@ class _AddButtonState extends State<AddButton> {
 
     return TextButton(
         onPressed: () {
-          isAdded = !isAdded;
-          if (!isAdded) {
+          setState(() {
+            isAdded = !isAdded;
+          });
+          if (isAdded) {
             final course = CourseClass();
             _courseIds.course = course;
             _courseIds.addCourse(widget.course);
-            setState(() {});
           }
         },
         style: ButtonStyle(

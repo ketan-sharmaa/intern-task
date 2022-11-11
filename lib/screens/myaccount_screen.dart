@@ -24,66 +24,61 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const SizedBox(height: 30),
-            Expanded(
-              flex: 1,
-              child: Container(
-                padding: const EdgeInsets.all(30),
-                decoration:
-                    BoxDecoration(color: Theme.of(context).primaryColor),
-                child: Row(
-                  children: [
-                    CircleAvatar(
-                      radius: 40,
-                      child: Image.asset(
-                        'card1.png',
-                        fit: BoxFit.fill,
-                      ),
+            Container(
+              padding: const EdgeInsets.all(30),
+              decoration: BoxDecoration(color: Theme.of(context).primaryColor),
+              child: Row(
+                children: [
+                  CircleAvatar(
+                    radius: 40,
+                    child: Image.asset(
+                      'card1.png',
+                      fit: BoxFit.fill,
                     ),
-                    const SizedBox(width: 15),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text(
-                          'John Doe',
-                          style: TextStyle(
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
-                        ),
-                        Text(
-                          user.email ?? 'Not Logged In',
-                          style: const TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
-                        )
-                      ],
-                    )
-                  ],
-                ),
+                  ),
+                  const SizedBox(width: 15),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        'John Doe',
+                        style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
+                      ),
+                      Text(
+                        user.email ?? 'Not Logged In',
+                        style: const TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
+                      )
+                    ],
+                  )
+                ],
               ),
             ),
-            Expanded(
-              flex: 4,
-              child: Container(
-                padding: const EdgeInsets.all(30),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ...menulist,
-                    TextButton(
-                      onPressed: () {},
-                      child: const Text(
-                        'Delete Account',
-                        style: TextStyle(
-                          color: Colors.red,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                        ),
+            Padding(
+              padding: const EdgeInsets.all(30),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ...menulist,
+                  TextButton(
+                    onPressed: () {
+                      Authentication().deleteUser();
+                    },
+                    child: const Text(
+                      'Delete Account',
+                      style: TextStyle(
+                        color: Colors.red,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
             ElevatedButton(

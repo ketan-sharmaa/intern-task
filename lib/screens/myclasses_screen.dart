@@ -20,6 +20,7 @@ class _MyClassesScreenState extends State<MyClassesScreen> {
           automaticallyImplyLeading: false,
         ),
         body: ListView.builder(
+          physics: const BouncingScrollPhysics(),
           itemCount: _courses.courses.length,
           itemBuilder: (BuildContext context, int index) {
             return classTile(item: _courses.courses[index]);

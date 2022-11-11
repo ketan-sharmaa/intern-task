@@ -38,7 +38,6 @@ class Authentication {
 
   Future signUp({required String email, required String password}) async {
     try {
-      //create user
       await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
     } on FirebaseAuthException catch (e, s) {
@@ -65,5 +64,9 @@ class Authentication {
 
   void logOut() async {
     await FirebaseAuth.instance.signOut();
+  }
+
+  void deleteUser() async {
+    await FirebaseAuth.instance.currentUser!.delete();
   }
 }

@@ -28,8 +28,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Learning App',
-      theme: ThemeData(inputDecorationTheme: InputDecorationTheme(border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
+      theme: ThemeData(
+        inputDecorationTheme: InputDecorationTheme(
+            border:
+                OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
         appBarTheme: const AppBarTheme(
             backgroundColor: Colors.transparent,
             shadowColor: Colors.transparent,

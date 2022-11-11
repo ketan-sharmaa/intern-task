@@ -32,30 +32,30 @@ class MenuButton extends StatelessWidget {
 
 //menulist for myaccount screen
 List menulist = [
-  const MenuButton(
+  MenuButton(
     buttonName: 'Account Setting',
-    onPressed: null,
+    onPressed: () {},
   ),
-  const MenuButton(
+  MenuButton(
     buttonName: 'Download Options',
-    onPressed: null,
+    onPressed: () {},
   ),
-  const MenuButton(
+  MenuButton(
     buttonName: 'Notifications Setting',
-    onPressed: null,
+    onPressed: () {},
   ),
   const SizedBox(height: 20),
-  const MenuButton(
+  MenuButton(
     buttonName: 'Privacy & Policy',
-    onPressed: null,
+    onPressed: () {},
   ),
-  const MenuButton(
+  MenuButton(
     buttonName: 'Help Center',
-    onPressed: null,
+    onPressed: () {},
   ),
-  const MenuButton(
+  MenuButton(
     buttonName: 'About Us',
-    onPressed: null,
+    onPressed: () {},
   ),
   const SizedBox(height: 10),
 ];

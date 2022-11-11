@@ -19,7 +19,6 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
 
   bool _hidePassword = true;
   bool _hideConfirmPassword = true;
-  
 
   @override
   void dispose() {
@@ -127,7 +126,10 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                         labelText: 'Confirm Password'),
                   ),
                   const SizedBox(height: 10),
-                  const LabelCheckBox(checkboxLabel: 'Remember me'),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 0),
+                    child: LabelCheckBox(checkboxLabel: 'Remember me'),
+                  ),
                   const SizedBox(height: 30),
                   ElevatedButton(
                     onPressed: () async {
@@ -141,7 +143,6 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                           _fullNameController.text.trim(),
                           _emailController.text.trim(),
                         );
-                        
                       }
                     },
                     child: const Text('Sign Up'),

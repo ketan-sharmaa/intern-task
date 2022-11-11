@@ -21,6 +21,7 @@ class _CourseCardState extends State<CourseCard> {
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               if (snapshot.connectionState == ConnectionState.done) {
                 return ListView.builder(
+                  physics: const BouncingScrollPhysics(),
                   clipBehavior: Clip.none,
                   scrollDirection: Axis.horizontal,
                   itemCount: CourseClass.items.length,
@@ -51,7 +52,7 @@ class _CourseCardState extends State<CourseCard> {
                                           style: const TextStyle(
                                             color: Colors.deepPurpleAccent,
                                             fontWeight: FontWeight.bold,
-                                            fontSize: 15,
+                                            fontSize: 12,
                                           ),
                                         ),
                                         const SizedBox(height: 10),
@@ -60,7 +61,7 @@ class _CourseCardState extends State<CourseCard> {
                                           style: const TextStyle(
                                             color: Colors.deepPurpleAccent,
                                             fontWeight: FontWeight.bold,
-                                            fontSize: 20,
+                                            fontSize: 16,
                                           ),
                                         ),
                                         const SizedBox(height: 10),
