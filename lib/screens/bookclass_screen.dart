@@ -20,7 +20,7 @@ class _BookClassScreenState extends State<BookClassScreen> {
                   Navigator.pop(context);
                 },
                 icon: const Icon(Icons.arrow_back_ios_sharp))),
-        body: CourseTiles(),
+        body: const CourseTiles(),
       ),
     );
   }

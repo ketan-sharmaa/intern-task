@@ -16,12 +16,71 @@ class _CourseCardState extends State<CourseCard> {
       children: [
         SizedBox(
           height: 250,
-          child: ListView.builder(
-            clipBehavior: Clip.none,
-            scrollDirection: Axis.horizontal,
-            itemCount: CourseClass.items.length,
-            itemBuilder: ((context, index) =>
-                NewCard(item: CourseClass.items[index])),
+          child: FutureBuilder(
+            future: CourseClass().getCoursesDocId(),
+            builder: (BuildContext context, AsyncSnapshot snapshot) {
+              if (snapshot.connectionState == ConnectionState.done) {
+                return ListView.builder(
+                  clipBehavior: Clip.none,
+                  scrollDirection: Axis.horizontal,
+                  itemCount: CourseClass.items.length,
+                  itemBuilder: ((context, index) => Card(
+                        child: SizedBox(
+                          height: 250,
+                          width: 250,
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                AspectRatio(
+                                  aspectRatio: 2 / 1,
+                                  child: Image.asset(
+                                    CourseClass.items[index].image,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                Container(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(10, 10, 10, 20),
+                                  child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          CourseClass.items[index].title,
+                                          style: const TextStyle(
+                                            color: Colors.deepPurpleAccent,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 15,
+                                          ),
+                                        ),
+                                        const SizedBox(height: 10),
+                                        Text(
+                                          CourseClass.items[index].subtitle,
+                                          style: const TextStyle(
+                                            color: Colors.deepPurpleAccent,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 20,
+                                          ),
+                                        ),
+                                        const SizedBox(height: 10),
+                                        Text(CourseClass.items[index].duration,
+                                            style: const TextStyle(
+                                              color: Colors.deepPurpleAccent,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 12,
+                                            ))
+                                      ]),
+                                )
+                              ]),
+                        ),
+                      )),
+                );
+              }
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            },
           ),
         ),
       ],
@@ -30,53 +89,3 @@ class _CourseCardState extends State<CourseCard> {
 }
 
 // ignore: non_constant_identifier_names
-Widget NewCard({required CardItem item}) => Card(
-      child: SizedBox(
-        height: 250,
-        width: 250,
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              AspectRatio(
-                aspectRatio: 2 / 1,
-                child: Image.asset(
-                  item.image,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.fromLTRB(10, 10, 10, 20),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        item.title,
-                        style: const TextStyle(
-                          color: Colors.deepPurpleAccent,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15,
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      Text(
-                        item.subtitle,
-                        style: const TextStyle(
-                          color: Colors.deepPurpleAccent,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      Text(
-                          '${item.duration.inHours.toString()}H ${item.duration.inMinutes.remainder(60).toString()}Min',
-                          style: const TextStyle(
-                            color: Colors.deepPurpleAccent,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 12,
-                          ))
-                    ]),
-              )
-            ]),
-      ),
-    );

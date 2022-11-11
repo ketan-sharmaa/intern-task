@@ -3,8 +3,7 @@ import 'package:intern_task/util/widget/card/card_items.dart';
 import 'package:intern_task/util/classes.dart';
 
 class CourseTiles extends StatelessWidget {
-  CourseTiles({super.key});
-  final _courseIds = MyCourses();
+  const CourseTiles({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -89,10 +88,12 @@ class _AddButtonState extends State<AddButton> {
     return TextButton(
         onPressed: () {
           isAdded = !isAdded;
-          final _course = CourseClass();
-          _courseIds.course = _course;
-          _courseIds.addCourse(widget.course);
-          setState(() {});
+          if (!isAdded) {
+            final course = CourseClass();
+            _courseIds.course = course;
+            _courseIds.addCourse(widget.course);
+            setState(() {});
+          }
         },
         style: ButtonStyle(
             backgroundColor:

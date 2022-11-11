@@ -5,13 +5,8 @@ class MyCourses {
   MyCourses._internal();
   factory MyCourses() => mc;
 
-  late CourseClass _course;
+  late CourseClass course;
   final List<int> _courseIds = [];
-  CourseClass get course => _course;
-  set course(CourseClass newCourse) {
-    assert(newCourse != null);
-    _course = newCourse;
-  }
 
   List<CardItem> get courses =>
       _courseIds.map((id) => course.getById(id)).toList();
