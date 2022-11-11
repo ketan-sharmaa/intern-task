@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intern_task/util/widget/card/card_items.dart';
+import 'package:intern_task/widget/card/card_items.dart';
 
 class CourseCard extends StatefulWidget {
   const CourseCard({super.key});
@@ -17,7 +17,7 @@ class _CourseCardState extends State<CourseCard> {
         SizedBox(
           height: 250,
           child: FutureBuilder(
-            future: CourseClass().getCoursesDocId(),
+            future: CourseClass().getCourses(),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               if (snapshot.connectionState == ConnectionState.done) {
                 return ListView.builder(
@@ -87,5 +87,3 @@ class _CourseCardState extends State<CourseCard> {
     );
   }
 }
-
-// ignore: non_constant_identifier_names

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intern_task/screens/fogotpassword_screen.dart';
-import 'package:intern_task/util/authentication/authentication_service.dart';
-import 'package:intern_task/util/widget/label_checkbox.dart';
+import 'package:intern_task/authentication/authentication_service.dart';
+import 'package:intern_task/widget/label_checkbox.dart';
 
 class LoginScreen extends StatefulWidget {
   final VoidCallback showCreateAccountPage;

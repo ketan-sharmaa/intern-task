@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intern_task/util/course_choice_chip.dart';
-import 'package:intern_task/util/widget/label_checkbox.dart';
+import 'package:intern_task/widget/label_checkbox.dart';
 
 class CourseSelectionScreen extends StatelessWidget {
   const CourseSelectionScreen({super.key});

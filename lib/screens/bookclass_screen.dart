@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intern_task/util/widget/card/course_tile_list.dart';
+import 'package:intern_task/widget/card/course_tile_list.dart';
 
 class BookClassScreen extends StatefulWidget {
   const BookClassScreen({super.key});

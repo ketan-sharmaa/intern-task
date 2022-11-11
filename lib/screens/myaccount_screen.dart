@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:intern_task/util/authentication/authentication_service.dart';
-import 'package:intern_task/util/widget/menu_button.dart';
+import 'package:intern_task/authentication/authentication_service.dart';
+import 'package:intern_task/widget/menu_button.dart';
 
 class MyAccountScreen extends StatefulWidget {
   const MyAccountScreen({super.key});

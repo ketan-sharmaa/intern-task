@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intern_task/util/classes.dart';
-import 'package:intern_task/util/widget/card/card_items.dart';
+import 'package:intern_task/widget/card/card_items.dart';
 
 class MyClassesScreen extends StatefulWidget {
   const MyClassesScreen({super.key});

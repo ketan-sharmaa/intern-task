@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intern_task/util/widget/card/course_card_list.dart';
+import 'package:intern_task/widget/card/course_card_list.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

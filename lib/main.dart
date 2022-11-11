@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:intern_task/util/authentication/auth_page.dart';
+import 'package:intern_task/authentication/auth_page.dart';
 import 'package:intern_task/util/firebase_options.dart';
-import 'package:intern_task/util/authentication/authentication_service.dart';
+import 'package:intern_task/authentication/authentication_service.dart';
 import 'package:intern_task/screens/launch_screen.dart';
 import 'package:intern_task/screens/bookclass_screen.dart';
 import 'package:intern_task/screens/course_selection_screen.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:intern_task/util/authentication/authentication_service.dart';
-import 'package:intern_task/util/widget/label_checkbox.dart';
+import 'package:intern_task/authentication/authentication_service.dart';
+import 'package:intern_task/widget/label_checkbox.dart';
 
 class CreateAccountScreen extends StatefulWidget {
   final VoidCallback showLoginScreen;

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:intern_task/screens/main_screen.dart';
-import 'package:intern_task/util/authentication/auth_page.dart';
+import 'package:intern_task/authentication/auth_page.dart';
 
 class Authenticate extends StatelessWidget {
   const Authenticate({super.key});

@@ -1,5 +1,55 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+class CardItem {
+  final String image;
+  final String title;
+  final String subtitle;
+  final String duration;
+  final int id;
+
+  CardItem({
+    required this.id,
+    required this.image,
+    required this.title,
+    required this.subtitle,
+    required this.duration,
+  });
+
+  factory CardItem.fromMap(Map<String, dynamic> map) {
+    return CardItem(
+      id: map['id'],
+      image: map['image'],
+      title: map['title'],
+      subtitle: map['subtitle'],
+      duration: map['duration'],
+    );
+  }
+}
+
+List courses = [];
+
+class CourseClass {
+  Future getCourses() async {
+    await FirebaseFirestore.instance
+        .collectionGroup('courses')
+        .get()
+        // ignore: avoid_function_literals_in_foreach_calls
+        .then((snapshot) => snapshot.docs.forEach((element) {
+              courses.add(element.data());
+            }));
+  }
+
+  static final cc = CourseClass._internal();
+  CourseClass._internal();
+  factory CourseClass() => cc;
+
+  static List<CardItem> items = List.from(courses)
+      .map<CardItem>((item) => CardItem.fromMap(item))
+      .toList();
+
+  CardItem getById(int id) => items.firstWhere((element) => element.id == id);
+}
+
 // List courses = [
 //   {
 //     'id': 1,
@@ -30,8 +80,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 //     'duration': const Duration(hours: 4, minutes: 20),
 //   },
 // ];
-
-
 
 //List<Map<String, dynamic>> courses2 = [];
 // Future getcourses() async {
@@ -66,50 +114,3 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 //     );
 //   }
 // }
-
-class CardItem {
-  final String image;
-  final String title;
-  final String subtitle;
-  final String duration;
-  final int id;
-  CardItem({
-    required this.id,
-    required this.image,
-    required this.title,
-    required this.subtitle,
-    required this.duration,
-  });
-  factory CardItem.fromMap(Map<String, dynamic> map) {
-    return CardItem(
-      id: map['id'],
-      image: map['image'],
-      title: map['title'],
-      subtitle: map['subtitle'],
-      duration: map['duration'],
-    );
-  }
-}
-List courses = [];
-class CourseClass {
-
-Future getCoursesDocId() async {
-  await FirebaseFirestore.instance
-      .collectionGroup('courses')
-      .get()
-      // ignore: avoid_function_literals_in_foreach_calls
-      .then((snapshot) => snapshot.docs.forEach((element) {
-            courses.add(element.data());
-          }));
-}
-
-  
-  static final cc = CourseClass._internal();
-  CourseClass._internal();
-  factory CourseClass() => cc;
-  static List<CardItem> items = List.from(courses)
-      .map<CardItem>((item) => CardItem.fromMap(item))
-      .toList();
-  CardItem getById(int id) => items.firstWhere((element) => element.id == id);
-}
-
