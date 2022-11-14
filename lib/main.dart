@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:intern_task/util/authentication/auth_page.dart';
+import 'package:intern_task/authentication/auth_page.dart';
 import 'package:intern_task/util/firebase_options.dart';
-import 'package:intern_task/util/authentication/authentication_service.dart';
+import 'package:intern_task/authentication/authentication_service.dart';
 import 'package:intern_task/screens/launch_screen.dart';
 import 'package:intern_task/screens/bookclass_screen.dart';
 import 'package:intern_task/screens/course_selection_screen.dart';
@@ -28,8 +28,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Learning App',
-      theme: ThemeData(inputDecorationTheme: InputDecorationTheme(border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
+      theme: ThemeData(
+        inputDecorationTheme: InputDecorationTheme(
+            border:
+                OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
         appBarTheme: const AppBarTheme(
             backgroundColor: Colors.transparent,
             shadowColor: Colors.transparent,

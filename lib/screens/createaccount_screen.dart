@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:intern_task/util/authentication/authentication_service.dart';
-import 'package:intern_task/util/widget/label_checkbox.dart';
+import 'package:intern_task/authentication/authentication_service.dart';
+import 'package:intern_task/widget/label_checkbox.dart';
 
 class CreateAccountScreen extends StatefulWidget {
   final VoidCallback showLoginScreen;
@@ -15,6 +15,8 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
+  final _fullNameController = TextEditingController();
+
   bool _hidePassword = true;
   bool _hideConfirmPassword = true;
 
@@ -22,6 +24,8 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    _fullNameController.dispose();
     super.dispose();
   }
 
@@ -52,6 +56,18 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30),
                 child: Column(children: [
+                  TextFormField(
+                    controller: _fullNameController,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please enter your Full Name';
+                      }
+                      return null;
+                    },
+                    decoration: const InputDecoration(labelText: 'Full Name'),
+                  ),
+                  const SizedBox(height: 20),
                   TextFormField(
                     controller: _emailController,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -110,16 +126,23 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                         labelText: 'Confirm Password'),
                   ),
                   const SizedBox(height: 10),
-                  const LabelCheckBox(checkboxLabel: 'Remember me'),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 0),
+                    child: LabelCheckBox(checkboxLabel: 'Remember me'),
+                  ),
                   const SizedBox(height: 30),
                   ElevatedButton(
                     onPressed: () async {
                       if (_formKey.currentState!.validate() &&
                           _passwordController.text ==
                               _confirmPasswordController.text) {
-                        Authentication().signUp(
+                        await Authentication().signUp(
                             email: _emailController.text.trim(),
                             password: _passwordController.text);
+                        await Authentication().addUserDetails(
+                          _fullNameController.text.trim(),
+                          _emailController.text.trim(),
+                        );
                       }
                     },
                     child: const Text('Sign Up'),

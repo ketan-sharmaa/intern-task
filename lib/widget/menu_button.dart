@@ -2,13 +2,17 @@ import 'package:flutter/material.dart';
 
 class MenuButton extends StatelessWidget {
   final String buttonName;
-
-  const MenuButton({super.key, required this.buttonName});
+  final dynamic onPressed;
+  const MenuButton({
+    super.key,
+    required this.buttonName,
+    required this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: () {},
+      onPressed: onPressed,
       child: Container(
         padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
         child: Row(
@@ -26,13 +30,32 @@ class MenuButton extends StatelessWidget {
   }
 }
 
+//menulist for myaccount screen
 List menulist = [
-  const MenuButton(buttonName: 'Account Setting'),
-  const MenuButton(buttonName: 'Download Options'),
-  const MenuButton(buttonName: 'Notifications Setting'),
+  MenuButton(
+    buttonName: 'Account Setting',
+    onPressed: () {},
+  ),
+  MenuButton(
+    buttonName: 'Download Options',
+    onPressed: () {},
+  ),
+  MenuButton(
+    buttonName: 'Notifications Setting',
+    onPressed: () {},
+  ),
   const SizedBox(height: 20),
-  const MenuButton(buttonName: 'Privacy & Policy'),
-  const MenuButton(buttonName: 'Help Center'),
-  const MenuButton(buttonName: 'About Us'),
+  MenuButton(
+    buttonName: 'Privacy & Policy',
+    onPressed: () {},
+  ),
+  MenuButton(
+    buttonName: 'Help Center',
+    onPressed: () {},
+  ),
+  MenuButton(
+    buttonName: 'About Us',
+    onPressed: () {},
+  ),
   const SizedBox(height: 10),
 ];

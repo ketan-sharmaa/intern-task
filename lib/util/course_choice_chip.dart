@@ -20,7 +20,7 @@ class _CourseChoiceChipState extends State<CourseChoiceChip> {
   @override
   Widget build(BuildContext context) {
     return Wrap(
-      spacing: 8,
+      spacing: 6,
       children: List.generate(choicesList.length, (index) {
         return ChoiceChip(
           labelPadding: const EdgeInsets.symmetric(horizontal: 18.0),

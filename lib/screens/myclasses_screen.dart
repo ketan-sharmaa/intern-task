@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intern_task/util/classes.dart';
-import 'package:intern_task/util/widget/card/card_items.dart';
-import 'package:intern_task/util/widget/card/course_tile_list.dart';
+import 'package:intern_task/widget/card/card_items.dart';
 
 class MyClassesScreen extends StatefulWidget {
   const MyClassesScreen({super.key});
@@ -21,9 +20,10 @@ class _MyClassesScreenState extends State<MyClassesScreen> {
           automaticallyImplyLeading: false,
         ),
         body: ListView.builder(
+          physics: const BouncingScrollPhysics(),
           itemCount: _courses.courses.length,
           itemBuilder: (BuildContext context, int index) {
-            return classTile(item: CourseClass.items[index]);
+            return classTile(item: _courses.courses[index]);
           },
         ),
       ),

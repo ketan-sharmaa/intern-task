@@ -12,14 +12,15 @@ class _LabelCheckBoxState extends State<LabelCheckBox> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: () {
         setState(() {
           ischecked = !ischecked;
         });
       },
       child: Row(
-        children: <Widget>[
+        mainAxisSize: MainAxisSize.min,
+        children: [
           Checkbox(
               value: ischecked,
               onChanged: (value) {

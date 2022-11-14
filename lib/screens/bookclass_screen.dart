@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intern_task/util/widget/card/course_tile_list.dart';
+import 'package:intern_task/widget/card/course_tile_list.dart';
 
 class BookClassScreen extends StatefulWidget {
   const BookClassScreen({super.key});
@@ -20,7 +20,7 @@ class _BookClassScreenState extends State<BookClassScreen> {
                   Navigator.pop(context);
                 },
                 icon: const Icon(Icons.arrow_back_ios_sharp))),
-        body: CourseTiles(),
+        body: const CourseTiles(),
       ),
     );
   }
