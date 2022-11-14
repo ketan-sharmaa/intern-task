@@ -11,7 +11,7 @@ class MyAccountScreen extends StatefulWidget {
 }
 
 class _MyAccountScreenState extends State<MyAccountScreen> {
-  final user = FirebaseAuth.instance.currentUser!;
+  User user = FirebaseAuth.instance.currentUser!;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -40,9 +40,9 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text(
-                        'John Doe',
-                        style: TextStyle(
+                      Text(
+                        user.displayName ?? 'none',
+                        style: const TextStyle(
                             fontSize: 25,
                             fontWeight: FontWeight.bold,
                             color: Colors.white),

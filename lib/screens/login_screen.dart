@@ -151,7 +151,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         if (_formKey.currentState!.validate()) {
                           Authentication().logIn(
                               email: _emailController.text.trim(),
-                              password: _passwordController.text);
+                              password: _passwordController.text,
+                              context: context);
                         }
                       },
                       child: const Text('Log in'),

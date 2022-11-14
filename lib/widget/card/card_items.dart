@@ -4,7 +4,7 @@ class CardItem {
   final String image;
   final String title;
   final String subtitle;
-  final String duration;
+  final Duration duration;
   final int id;
 
   CardItem({
@@ -21,7 +21,8 @@ class CardItem {
       image: map['image'],
       title: map['title'],
       subtitle: map['subtitle'],
-      duration: map['duration'],
+      duration: Duration(
+          hours: map['duration']['hours'], minutes: map['duration']['minutes']),
     );
   }
 }

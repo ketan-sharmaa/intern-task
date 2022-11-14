@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intern_task/widget/card/course_card_list.dart';
 
@@ -9,6 +10,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  User user = FirebaseAuth.instance.currentUser!;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -25,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               const SizedBox(height: 30),
               Text(
-                'Welcome Back John Doe',
+                user.displayName ?? 'Welcome Back',
                 style: Theme.of(context).textTheme.headline4,
                 textAlign: TextAlign.center,
               ),
