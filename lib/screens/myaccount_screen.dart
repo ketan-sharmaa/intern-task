@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:intern_task/pages/menu_button.dart';
+import 'package:intern_task/util/authentication/authentication_service.dart';
+import 'package:intern_task/util/widget/menu_button.dart';
 
 class MyAccountScreen extends StatefulWidget {
   const MyAccountScreen({super.key});
@@ -9,18 +11,17 @@ class MyAccountScreen extends StatefulWidget {
 }
 
 class _MyAccountScreenState extends State<MyAccountScreen> {
+  final user = FirebaseAuth.instance.currentUser!;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-            title: const Text('My Account'),
-            leading: IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: const Icon(Icons.arrow_back_ios_sharp))),
+          title: const Text('My Account'),
+          automaticallyImplyLeading: false,
+        ),
         body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const SizedBox(height: 30),
             Expanded(
@@ -41,8 +42,8 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
                     const SizedBox(width: 15),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Text(
+                      children: [
+                        const Text(
                           'John Doe',
                           style: TextStyle(
                               fontSize: 25,
@@ -50,8 +51,8 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
                               color: Colors.white),
                         ),
                         Text(
-                          'John@email.com',
-                          style: TextStyle(
+                          user.email ?? 'Not Logged In',
+                          style: const TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.bold,
                               color: Colors.white),
@@ -69,14 +70,7 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const MenuButton(buttonName: 'Account Setting'),
-                    const MenuButton(buttonName: 'Download Options'),
-                    const MenuButton(buttonName: 'Notifications Setting'),
-                    const SizedBox(height: 20),
-                    const MenuButton(buttonName: 'Privacy & Policy'),
-                    const MenuButton(buttonName: 'Help Center'),
-                    const MenuButton(buttonName: 'About Us'),
-                    const SizedBox(height: 10),
+                    ...menulist,
                     TextButton(
                       onPressed: () {},
                       child: const Text(
@@ -88,17 +82,16 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
                         ),
                       ),
                     ),
-                    const Expanded(child: SizedBox()),
-                    ElevatedButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, '/login');
-                        },
-                        child: const Text('Log Out')),
-                    const Expanded(child: SizedBox()),
                   ],
                 ),
               ),
             ),
+            ElevatedButton(
+                onPressed: () {
+                  Authentication().logOut();
+                },
+                child: const Text('Log Out')),
+            const Expanded(child: SizedBox()),
           ],
         ),
       ),

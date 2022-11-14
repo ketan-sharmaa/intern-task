@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:intern_task/pages/bottomnav.dart';
-import 'package:intern_task/pages/course_selection_screen.dart';
-import 'package:intern_task/pages/home_screen.dart';
-import 'package:intern_task/pages/intro_screen.dart';
-import 'package:intern_task/pages/launch_screen.dart';
-import 'package:intern_task/pages/login_screen.dart';
-import 'package:intern_task/pages/myaccount_screen.dart';
-import 'package:intern_task/pages/myclasses_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:intern_task/util/authentication/auth_page.dart';
+import 'package:intern_task/util/firebase_options.dart';
+import 'package:intern_task/util/authentication/authentication_service.dart';
+import 'package:intern_task/screens/launch_screen.dart';
+import 'package:intern_task/screens/bookclass_screen.dart';
+import 'package:intern_task/screens/course_selection_screen.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(const MyApp());
 }
 
@@ -22,8 +26,10 @@ class MyApp extends StatelessWidget {
       fontWeight: FontWeight.bold,
     );
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Learning App',
-      theme: ThemeData(
+      theme: ThemeData(inputDecorationTheme: InputDecorationTheme(border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10))),
         appBarTheme: const AppBarTheme(
             backgroundColor: Colors.transparent,
             shadowColor: Colors.transparent,
@@ -41,8 +47,8 @@ class MyApp extends StatelessWidget {
           headline4: boldDeepPurpleAccent,
           headline5: boldDeepPurpleAccent,
           headline6: boldDeepPurpleAccent,
-          bodyText2: TextStyle(color: Color.fromARGB(255, 43, 43, 43)),
           bodyText1: boldDeepPurpleAccent,
+          bodyText2: TextStyle(color: Color.fromARGB(255, 43, 43, 43)),
         ),
         primaryColor: deepPurpleAccent,
         primarySwatch: Colors.deepPurple,
@@ -61,27 +67,20 @@ class MyApp extends StatelessWidget {
         ),
         iconTheme: const IconThemeData(color: deepPurpleAccent),
         cardTheme: CardTheme(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-          elevation: 5,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+          elevation: 2,
           shadowColor: deepPurpleAccent,
           margin: const EdgeInsets.all(3),
         ),
       ),
       initialRoute: '/',
-  routes: {
-    '/': (context) => const LaunchScreen(),
-    '/intro': (context) => const IntroScreen(),
-    '/home': (context) => const HomeScreen(),
-    '/myclass': (context) => const MyClassesScreen(),
+      routes: {
+        '/': (context) => const LaunchScreen(),
+        '/authenticate': (context) => const Authenticate(),
+        '/authpage': (context) => const AuthPage(),
         '/courseselection': (context) => const CourseSelectionScreen(),
-    '/myaccount': (context) => const MyAccountScreen(),
-        '/login': (context) => const LoginScreen(),
-    '/bottomnav': (context) => const BottomNav(),
-
-
-
-  },
+        '/bookclass': (context) => const BookClassScreen(),
+      },
     );
   }
 }

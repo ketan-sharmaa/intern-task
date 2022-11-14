@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intern_task/pages/course_card.dart';
+import 'package:intern_task/util/widget/card/course_card_list.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -14,13 +14,13 @@ class _HomeScreenState extends State<HomeScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-            title: const Text('Home'),
-            leading: IconButton(
-                onPressed: () {Navigator.pop(context);},
-                icon: const Icon(Icons.arrow_back_ios_sharp))),
-        body: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 30),
+          title: const Text('Home'),
+          automaticallyImplyLeading: false,
+        ),
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15.0),
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 30),
@@ -31,12 +31,15 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               const SizedBox(height: 50),
               Row(
+                mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Expanded(
                     flex: 1,
                     child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/bookclass');
+                        },
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)),
@@ -47,7 +50,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   Expanded(
                     flex: 1,
                     child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/courseselection');
+                        },
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)),
