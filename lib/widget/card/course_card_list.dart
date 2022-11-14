@@ -65,7 +65,8 @@ class _CourseCardState extends State<CourseCard> {
                                           ),
                                         ),
                                         const SizedBox(height: 10),
-                                        Text(CourseClass.items[index].duration,
+                                        Text(
+                                            '${CourseClass.items[index].duration.inHours}h ${CourseClass.items[index].duration.inMinutes.remainder(60)}min',
                                             style: const TextStyle(
                                               color: Colors.deepPurpleAccent,
                                               fontWeight: FontWeight.bold,

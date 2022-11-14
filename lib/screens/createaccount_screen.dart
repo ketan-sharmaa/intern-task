@@ -138,11 +138,14 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                               _confirmPasswordController.text) {
                         await Authentication().signUp(
                             email: _emailController.text.trim(),
-                            password: _passwordController.text);
-                        await Authentication().addUserDetails(
-                          _fullNameController.text.trim(),
-                          _emailController.text.trim(),
-                        );
+                            password: _passwordController.text,
+                            context: context,
+                            fullName: _fullNameController.text.trim());
+
+                        // await Authentication().addUserDetails(
+                        //   _fullNameController.text.trim(),
+                        //   _emailController.text.trim(),
+                        // );
                       }
                     },
                     child: const Text('Sign Up'),

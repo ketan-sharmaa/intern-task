@@ -58,7 +58,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               onPressed: () async {
                 if (_emailController.text.isNotEmpty) {
                   Authentication()
-                      .passwordReset(email: _emailController.text.trim());
+                      .passwordReset(email: _emailController.text.trim(),context: context);
                 }
               },
               child: const Text('Reset Password'),
